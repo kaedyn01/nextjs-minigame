@@ -9,6 +9,7 @@ import styles from "@/styles/Home.module.css";
  */
 export default function Home() {
   let aiChoice = -1;    // The move that the ai makes. Rock = 0, Paper = 1, Scissors = 2.
+  let numOfRounds = 0;
   let numOfWins = 0;
   let numOfLosses = 0;
   let numOfTies = 0;
@@ -51,20 +52,22 @@ export default function Home() {
 
     // Primary rock paper scissors logic.
     if (playerChoice == aiChoice) {
-      updateTiesElement(ties);
+      incTiesElement(ties);
     } else if (playerChoice == 0 && aiChoice == 1) {
-      updateLossesElement(losses);
+      incLossesElement(losses);
     } else if (playerChoice == 1 && aiChoice == 2) {
-      updateLossesElement(losses);
+      incLossesElement(losses);
     } else if (playerChoice == 2 && aiChoice == 0) {
-      updateLossesElement(losses);
+      incLossesElement(losses);
     } else if (playerChoice == 0 && aiChoice == 2) {
-      updateWinsElement(wins);
+      incWinsElement(wins);
     } else if (playerChoice == 1 && aiChoice == 0) {
-      updateWinsElement(wins);
+      incWinsElement(wins);
     } else if (playerChoice == 2 && aiChoice == 1) {
-      updateWinsElement(wins);
+      incWinsElement(wins);
     }
+
+    incRoundsElement(rounds);
 
     // For debugging purposes.
     console.log(
@@ -77,7 +80,7 @@ export default function Home() {
    * 
    * @param {html element} wins 
    */
-  function updateWinsElement(wins) {
+  function incWinsElement(wins) {
     wins.innerHTML = wins.innerHTML.replace(
       wins.innerHTML,
       "Wins = " + ++numOfWins
@@ -89,7 +92,7 @@ export default function Home() {
    * 
    * @param {html element} losses 
    */
-  function updateLossesElement(losses) {
+  function incLossesElement(losses) {
     losses.innerHTML = losses.innerHTML.replace(
       losses.innerHTML,
       "Losses = " + ++numOfLosses
@@ -101,13 +104,28 @@ export default function Home() {
    * 
    * @param {html element} ties 
    */
-  function updateTiesElement(ties) {
+  function incTiesElement(ties) {
     ties.innerHTML = ties.innerHTML.replace(
       ties.innerHTML,
       "Ties = " + ++numOfTies
     );
   }
 
+  /**
+   * Updates the rounds element on the scoreboard.
+   * 
+   * @param {html element} rounds 
+   */
+  function incRoundsElement(rounds) {
+    rounds.innerHTML = rounds.innerHTML.replace(
+      rounds.innerHTML,
+      "Rounds = " + ++numOfRounds
+    );
+  }
+
+  /**
+   * Simulates the ai choosing either rock, paper, or scissors.
+   */
   function loadAi() {
     aiChoice = Math.floor(Math.random() * 3);
   }
@@ -125,6 +143,7 @@ export default function Home() {
       <p id="wins">Wins = 0</p>
       <p id="losses">Losses = 0</p>
       <p id="ties">Ties = 0</p>
+      <p id="rounds">Rounds = 0</p>
 
       <br />
 
