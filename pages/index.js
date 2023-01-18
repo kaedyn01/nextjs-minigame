@@ -8,7 +8,7 @@ import styles from "@/styles/Home.module.css";
  * @returns The HTML page displayed to the user.
  */
 export default function Home() {
-  let aiChoice = -1;
+  let aiChoice = -1;    // The move that the ai makes. Rock = 0, Paper = 1, Scissors = 2.
   let numOfWins = 0;
   let numOfLosses = 0;
   let numOfTies = 0;
@@ -45,7 +45,6 @@ export default function Home() {
   function gameLogic(playerChoice) {
     // Initialize vars.
     loadAi();
-    let header = document.getElementById("header");
     let wins = document.getElementById("wins");
     let losses = document.getElementById("losses");
     let ties = document.getElementById("ties");
@@ -67,6 +66,7 @@ export default function Home() {
       updateWinsElement(wins);
     }
 
+    // For debugging purposes.
     console.log(
       "Player Choice = " + playerChoice + "; AI Choice = " + aiChoice
     );
