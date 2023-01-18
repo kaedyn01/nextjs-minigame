@@ -147,7 +147,7 @@ export default function Home() {
 
       <br />
 
-      <button id="rock" onClick={rockHandler}>
+      <button className={styles.button} id="rock" onClick={rockHandler}>
         <Image
           priority
           src="/images/rock_cropped.png"
@@ -156,7 +156,7 @@ export default function Home() {
           alt="rock"
         />
       </button>
-      <button id="paper" onClick={paperHandler}>
+      <button className={styles.button} id="paper" onClick={paperHandler}>
         <Image
           priority
           src="/images/paper_cropped.png"
@@ -165,7 +165,7 @@ export default function Home() {
           alt="paper"
         />
       </button>
-      <button id="scissors" onClick={scissorsHandler}>
+      <button className={styles.button} id="scissors" onClick={scissorsHandler}>
         <Image
           priority
           src="/images/scissors_cropped.png"
