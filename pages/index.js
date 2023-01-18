@@ -1,7 +1,117 @@
 import Head from "next/head";
+import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 
+/**
+ * The primary React module used to display the page and logic to the user.
+ *
+ * @returns The HTML page displayed to the user.
+ */
 export default function Home() {
+  let aiChoice = -1;
+  let numOfWins = 0;
+  let numOfLosses = 0;
+  let numOfTies = 0;
+
+  /**
+   * This function handles all of the logic performed when the rock button is clicked.
+   */
+  function rockHandler() {
+    gameLogic(0);
+  }
+
+  /**
+   * This function handles all of the logic performed when the paper button is clicked.
+   */
+  function paperHandler() {
+    gameLogic(1);
+  }
+
+  /**
+   * This function handles all of the logic performed when the paper button is clicked.
+   */
+  function scissorsHandler() {
+    gameLogic(2);
+  }
+
+  /**
+   * This function handles all of the rock paper scissors game logic.
+   *
+   * @param {number} playerChoice The move that the player makes.
+   *                              0 = Rock
+   *                              1 = Paper
+   *                              2 = Scissors
+   */
+  function gameLogic(playerChoice) {
+    // Initialize vars.
+    loadAi();
+    let header = document.getElementById("header");
+    let wins = document.getElementById("wins");
+    let losses = document.getElementById("losses");
+    let ties = document.getElementById("ties");
+
+    // Primary rock paper scissors logic.
+    if (playerChoice == aiChoice) {
+      updateTiesElement(ties);
+    } else if (playerChoice == 0 && aiChoice == 1) {
+      updateLossesElement(losses);
+    } else if (playerChoice == 1 && aiChoice == 2) {
+      updateLossesElement(losses);
+    } else if (playerChoice == 2 && aiChoice == 0) {
+      updateLossesElement(losses);
+    } else if (playerChoice == 0 && aiChoice == 2) {
+      updateWinsElement(wins);
+    } else if (playerChoice == 1 && aiChoice == 0) {
+      updateWinsElement(wins);
+    } else if (playerChoice == 2 && aiChoice == 1) {
+      updateWinsElement(wins);
+    }
+
+    console.log(
+      "Player Choice = " + playerChoice + "; AI Choice = " + aiChoice
+    );
+  }
+
+  /**
+   * Updates the the wins element on the scoreboard.
+   * 
+   * @param {html element} wins 
+   */
+  function updateWinsElement(wins) {
+    wins.innerHTML = wins.innerHTML.replace(
+      wins.innerHTML,
+      "Wins = " + ++numOfWins
+    );
+  }
+
+  /**
+   * Updates the losses element on the scoreboard.
+   * 
+   * @param {html element} losses 
+   */
+  function updateLossesElement(losses) {
+    losses.innerHTML = losses.innerHTML.replace(
+      losses.innerHTML,
+      "Losses = " + ++numOfLosses
+    );
+  }
+
+  /**
+   * Updates the ties element on the scoreboard.
+   * 
+   * @param {html element} ties 
+   */
+  function updateTiesElement(ties) {
+    ties.innerHTML = ties.innerHTML.replace(
+      ties.innerHTML,
+      "Ties = " + ++numOfTies
+    );
+  }
+
+  function loadAi() {
+    aiChoice = Math.floor(Math.random() * 3);
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,7 +121,40 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <button className={styles.button}>Cool</button>
+      <h2 id="header">Select an option...</h2>
+      <p id="wins">Wins = 0</p>
+      <p id="losses">Losses = 0</p>
+      <p id="ties">Ties = 0</p>
+
+      <br />
+
+      <button id="rock" onClick={rockHandler}>
+        <Image
+          priority
+          src="/images/rock_cropped.png"
+          width={144}
+          height={144}
+          alt="rock"
+        />
+      </button>
+      <button id="paper" onClick={paperHandler}>
+        <Image
+          priority
+          src="/images/paper_cropped.png"
+          width={144}
+          height={144}
+          alt="paper"
+        />
+      </button>
+      <button id="scissors" onClick={scissorsHandler}>
+        <Image
+          priority
+          src="/images/scissors_cropped.png"
+          width={144}
+          height={144}
+          alt="scissors"
+        />
+      </button>
     </div>
   );
 }
