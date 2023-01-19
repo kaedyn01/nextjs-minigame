@@ -1,5 +1,8 @@
 .container {
   text-align: center;
+  overflow: hidden;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .button {
@@ -16,4 +19,14 @@
 
 .button:hover {
   background-color: cadetblue;
+}
+
+.scoreboard {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(47, 47, 47, 0.5);
+  color: white;
+  text-align: center;
 }

@@ -139,11 +139,8 @@ export default function Home() {
       </Head>
 
       <h1>A Very Mediocre Rock Paper Scissors</h1>
+
       <h2 id="header">Select an option...</h2>
-      <p id="wins">Wins = 0</p>
-      <p id="losses">Losses = 0</p>
-      <p id="ties">Ties = 0</p>
-      <p id="rounds">Rounds = 0</p>
 
       <br />
 
@@ -174,6 +171,23 @@ export default function Home() {
           alt="scissors"
         />
       </button>
+
+      <h2>Opponent Choice...</h2>
+
+      <Image
+        priority
+        src="/images/scissors_cropped.png"
+        width={144}
+        height={144}
+        alt="scissors"
+      />
+
+      <footer className={styles.scoreboard}>
+        <p id="wins">Wins = 0</p>
+        <p id="losses">Losses = 0</p>
+        <p id="ties">Ties = 0</p>
+        <p id="rounds">Rounds = 0</p>
+      </footer>
     </div>
   );
 }
