@@ -25,6 +25,7 @@ export default function Home() {
    */
   function paperHandler() {
     let game = new GameLogic();
+
     console.log(game.playRound(1, game.generateAiMove()));
   }
 
@@ -33,6 +34,7 @@ export default function Home() {
    */
   function scissorsHandler() {
     let game = new GameLogic();
+    
     console.log(game.playRound(2, game.generateAiMove()));
   }
 
