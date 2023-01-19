@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
+import { ApiError } from "next/dist/server/api-utils";
+import GameLogic from '../lib/gamelogic'
 
 /**
  * The primary React module used to display the page and logic to the user.
@@ -8,125 +10,30 @@ import styles from "@/styles/Home.module.css";
  * @returns The HTML page displayed to the user.
  */
 export default function Home() {
-  let aiChoice = -1; // The move that the ai makes. Rock = 0, Paper = 1, Scissors = 2.
-  let numOfRounds = 0;
-  let numOfWins = 0;
-  let numOfLosses = 0;
-  let numOfTies = 0;
 
   /**
    * This function handles all of the logic performed when the rock button is clicked.
    */
   function rockHandler() {
-    gameLogic(0);
+    let game = new GameLogic();
+
+    console.log(game.playRound(0, game.generateAiMove()));
   }
 
   /**
    * This function handles all of the logic performed when the paper button is clicked.
    */
   function paperHandler() {
-    gameLogic(1);
+    let game = new GameLogic();
+    console.log(game.playRound(1, game.generateAiMove()));
   }
 
   /**
    * This function handles all of the logic performed when the paper button is clicked.
    */
   function scissorsHandler() {
-    gameLogic(2);
-  }
-
-  /**
-   * This function handles all of the rock paper scissors game logic.
-   *
-   * @param {number} playerChoice The move that the player makes.
-   *                              0 = Rock
-   *                              1 = Paper
-   *                              2 = Scissors
-   */
-  function gameLogic(playerChoice) {
-    // Initialize vars.
-    loadAi();
-    let wins = document.getElementById("wins");
-    let losses = document.getElementById("losses");
-    let ties = document.getElementById("ties");
-
-    // Primary rock paper scissors logic.
-    if (playerChoice == aiChoice) {
-      incTiesElement(ties);
-    } else if (playerChoice == 0 && aiChoice == 1) {
-      incLossesElement(losses);
-    } else if (playerChoice == 1 && aiChoice == 2) {
-      incLossesElement(losses);
-    } else if (playerChoice == 2 && aiChoice == 0) {
-      incLossesElement(losses);
-    } else if (playerChoice == 0 && aiChoice == 2) {
-      incWinsElement(wins);
-    } else if (playerChoice == 1 && aiChoice == 0) {
-      incWinsElement(wins);
-    } else if (playerChoice == 2 && aiChoice == 1) {
-      incWinsElement(wins);
-    }
-    incRoundsElement(rounds);
-
-    // For debugging purposes.
-    console.log(
-      "Player Choice = " + playerChoice + "; AI Choice = " + aiChoice
-    );
-  }
-
-  /**
-   * Updates the the wins element on the scoreboard.
-   *
-   * @param {html element} wins
-   */
-  function incWinsElement(wins) {
-    wins.innerHTML = wins.innerHTML.replace(
-      wins.innerHTML,
-      "Wins = " + ++numOfWins
-    );
-  }
-
-  /**
-   * Updates the losses element on the scoreboard.
-   *
-   * @param {html element} losses
-   */
-  function incLossesElement(losses) {
-    losses.innerHTML = losses.innerHTML.replace(
-      losses.innerHTML,
-      "Losses = " + ++numOfLosses
-    );
-  }
-
-  /**
-   * Updates the ties element on the scoreboard.
-   *
-   * @param {html element} ties
-   */
-  function incTiesElement(ties) {
-    ties.innerHTML = ties.innerHTML.replace(
-      ties.innerHTML,
-      "Ties = " + ++numOfTies
-    );
-  }
-
-  /**
-   * Updates the rounds element on the scoreboard.
-   *
-   * @param {html element} rounds
-   */
-  function incRoundsElement(rounds) {
-    rounds.innerHTML = rounds.innerHTML.replace(
-      rounds.innerHTML,
-      "Rounds = " + ++numOfRounds
-    );
-  }
-
-  /**
-   * Simulates the ai choosing either rock, paper, or scissors.
-   */
-  function loadAi() {
-    aiChoice = Math.floor(Math.random() * 3);
+    let game = new GameLogic();
+    console.log(game.playRound(2, game.generateAiMove()));
   }
 
   return (
@@ -175,8 +82,9 @@ export default function Home() {
       <h2>Opponent Choice...</h2>
 
       <Image
+        id="aiChoice"
         priority
-        src="/images/scissors_cropped.png"
+        src="/images/question_mark_cropped.png"
         width={144}
         height={144}
         alt="scissors"
