@@ -139,6 +139,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <h1>A Very Mediocre Rock Paper Scissors</h1>
       <h2 id="header">Select an option...</h2>
       <p id="wins">Wins = 0</p>
       <p id="losses">Losses = 0</p>
