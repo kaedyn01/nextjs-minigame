@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { ApiError } from "next/dist/server/api-utils";
-import GameLogic from '../lib/gamelogic'
+import { rockHandler, paperHandler, scissorsHandler } from "@/lib/page-logic-index";
 
 /**
  * The primary React module used to display the page and logic to the user.
@@ -10,33 +9,6 @@ import GameLogic from '../lib/gamelogic'
  * @returns The HTML page displayed to the user.
  */
 export default function Home() {
-
-  /**
-   * This function handles all of the logic performed when the rock button is clicked.
-   */
-  function rockHandler() {
-    let game = new GameLogic();
-
-    console.log(game.playRound(0, game.generateAiMove()));
-  }
-
-  /**
-   * This function handles all of the logic performed when the paper button is clicked.
-   */
-  function paperHandler() {
-    let game = new GameLogic();
-
-    console.log(game.playRound(1, game.generateAiMove()));
-  }
-
-  /**
-   * This function handles all of the logic performed when the paper button is clicked.
-   */
-  function scissorsHandler() {
-    let game = new GameLogic();
-    
-    console.log(game.playRound(2, game.generateAiMove()));
-  }
 
   return (
     <div className={styles.container}>
@@ -83,20 +55,15 @@ export default function Home() {
 
       <h2>Opponent Choice...</h2>
 
-      <Image
-        id="aiChoice"
-        priority
-        src="/images/question_mark_cropped.png"
-        width={144}
-        height={144}
-        alt="scissors"
-      />
+      <h3 className={styles.aiMoveDisplay}><em id="aiMoveDisplay"></em></h3>
+
+      <h1 id="roundResult"></h1>
 
       <footer className={styles.scoreboard}>
-        <p id="wins">Wins = 0</p>
-        <p id="losses">Losses = 0</p>
-        <p id="ties">Ties = 0</p>
-        <p id="rounds">Rounds = 0</p>
+        <p id="wins">Wins: 0</p>
+        <p id="losses">Losses: 0</p>
+        <p id="ties">Ties: 0</p>
+        <p id="rounds">Rounds: 0</p>
       </footer>
     </div>
   );

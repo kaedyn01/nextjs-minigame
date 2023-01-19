@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
 .container {
+  font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
   overflow: hidden;
   overflow-x: hidden;
@@ -27,4 +30,9 @@
   background-color: rgba(47, 47, 47, 0.5);
   color: white;
   text-align: center;
+}
+
+.aiMoveDisplay {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
