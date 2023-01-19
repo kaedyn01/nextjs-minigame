@@ -8,7 +8,7 @@ import styles from "@/styles/Home.module.css";
  * @returns The HTML page displayed to the user.
  */
 export default function Home() {
-  let aiChoice = -1;    // The move that the ai makes. Rock = 0, Paper = 1, Scissors = 2.
+  let aiChoice = -1; // The move that the ai makes. Rock = 0, Paper = 1, Scissors = 2.
   let numOfRounds = 0;
   let numOfWins = 0;
   let numOfLosses = 0;
@@ -66,7 +66,6 @@ export default function Home() {
     } else if (playerChoice == 2 && aiChoice == 1) {
       incWinsElement(wins);
     }
-
     incRoundsElement(rounds);
 
     // For debugging purposes.
@@ -77,8 +76,8 @@ export default function Home() {
 
   /**
    * Updates the the wins element on the scoreboard.
-   * 
-   * @param {html element} wins 
+   *
+   * @param {html element} wins
    */
   function incWinsElement(wins) {
     wins.innerHTML = wins.innerHTML.replace(
@@ -89,8 +88,8 @@ export default function Home() {
 
   /**
    * Updates the losses element on the scoreboard.
-   * 
-   * @param {html element} losses 
+   *
+   * @param {html element} losses
    */
   function incLossesElement(losses) {
     losses.innerHTML = losses.innerHTML.replace(
@@ -101,8 +100,8 @@ export default function Home() {
 
   /**
    * Updates the ties element on the scoreboard.
-   * 
-   * @param {html element} ties 
+   *
+   * @param {html element} ties
    */
   function incTiesElement(ties) {
     ties.innerHTML = ties.innerHTML.replace(
@@ -113,8 +112,8 @@ export default function Home() {
 
   /**
    * Updates the rounds element on the scoreboard.
-   * 
-   * @param {html element} rounds 
+   *
+   * @param {html element} rounds
    */
   function incRoundsElement(rounds) {
     rounds.innerHTML = rounds.innerHTML.replace(
