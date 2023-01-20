@@ -1,7 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { rockHandler, paperHandler, scissorsHandler } from "@/lib/page-logic-index";
+import {
+  rockHandler,
+  paperHandler,
+  scissorsHandler,
+} from "@/lib/page-logic-index";
 
 /**
  * The primary React module used to display the page and logic to the user.
@@ -9,7 +13,6 @@ import { rockHandler, paperHandler, scissorsHandler } from "@/lib/page-logic-ind
  * @returns The HTML page displayed to the user.
  */
 export default function Home() {
-
   return (
     <div className={styles.container}>
       <Head>
@@ -25,6 +28,29 @@ export default function Home() {
 
       <br />
 
+      <RpsButtons />
+
+      <h2>Opponent Choice...</h2>
+
+      <h3 className={styles.aiMoveDisplay}>
+        <em id="aiMoveDisplay"></em>
+      </h3>
+
+      <h1 id="roundResult"></h1>
+
+      <Scoreboard />
+    </div>
+  );
+}
+
+/**
+ * A react component containing the buttons needed to make functional rock paper scissors buttons.
+ *
+ * @returns HTML representing the rock paper scissors buttons.
+ */
+export function RpsButtons() {
+  return (
+    <div>
       <button className={styles.button} id="rock" onClick={rockHandler}>
         <Image
           priority
@@ -52,19 +78,22 @@ export default function Home() {
           alt="scissors"
         />
       </button>
-
-      <h2>Opponent Choice...</h2>
-
-      <h3 className={styles.aiMoveDisplay}><em id="aiMoveDisplay"></em></h3>
-
-      <h1 id="roundResult"></h1>
-
-      <footer className={styles.scoreboard}>
-        <p id="wins">Wins: 0</p>
-        <p id="losses">Losses: 0</p>
-        <p id="ties">Ties: 0</p>
-        <p id="rounds">Rounds: 0</p>
-      </footer>
     </div>
+  );
+}
+
+/**
+ * A react component that contains a scoreboard for the rock paper scissors game.
+ *
+ * @returns HTML representing a scoreboard footer.
+ */
+export function Scoreboard() {
+  return (
+    <footer className={styles.scoreboard}>
+      <p id="wins">Wins: 0</p>
+      <p id="losses">Losses: 0</p>
+      <p id="ties">Ties: 0</p>
+      <p id="rounds">Rounds: 0</p>
+    </footer>
   );
 }
