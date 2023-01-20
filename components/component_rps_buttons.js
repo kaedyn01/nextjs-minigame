@@ -4,7 +4,7 @@ import {
   rockHandler,
   paperHandler,
   scissorsHandler,
-} from "@/lib/page-logic-index";
+} from "@/lib/page_logic_index";
 
 /**
  * A react component containing the buttons needed to make functional rock paper scissors buttons.
