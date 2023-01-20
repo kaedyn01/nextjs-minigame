@@ -1,11 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import {
-  rockHandler,
-  paperHandler,
-  scissorsHandler,
-} from "@/lib/page-logic-index";
+import { Scoreboard } from "@/components/component-scoreboard";
+import { RpsButtons } from "@/components/component-rps-buttons";
 
 /**
  * The primary React module used to display the page and logic to the user.
@@ -40,60 +36,5 @@ export default function Home() {
 
       <Scoreboard />
     </div>
-  );
-}
-
-/**
- * A react component containing the buttons needed to make functional rock paper scissors buttons.
- *
- * @returns HTML representing the rock paper scissors buttons.
- */
-export function RpsButtons() {
-  return (
-    <div>
-      <button className={styles.button} id="rock" onClick={rockHandler}>
-        <Image
-          priority
-          src="/images/rock_cropped.png"
-          width={144}
-          height={144}
-          alt="rock"
-        />
-      </button>
-      <button className={styles.button} id="paper" onClick={paperHandler}>
-        <Image
-          priority
-          src="/images/paper_cropped.png"
-          width={144}
-          height={144}
-          alt="paper"
-        />
-      </button>
-      <button className={styles.button} id="scissors" onClick={scissorsHandler}>
-        <Image
-          priority
-          src="/images/scissors_cropped.png"
-          width={144}
-          height={144}
-          alt="scissors"
-        />
-      </button>
-    </div>
-  );
-}
-
-/**
- * A react component that contains a scoreboard for the rock paper scissors game.
- *
- * @returns HTML representing a scoreboard footer.
- */
-export function Scoreboard() {
-  return (
-    <footer className={styles.scoreboard}>
-      <p id="wins">Wins: 0</p>
-      <p id="losses">Losses: 0</p>
-      <p id="ties">Ties: 0</p>
-      <p id="rounds">Rounds: 0</p>
-    </footer>
   );
 }
