@@ -1,3 +1,6 @@
 ## Intro 
 
-Welcome to the rock papers scissors game built in nextjs. 
+Welcome to the minigame website built in nextjs. 
+
+Current games available to play include: 
+  Rock Paper Scissors
